@@ -4,19 +4,26 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.myname.game.gameScreen.entities.HolderStatics;
 
 public class GameScreen implements Screen {
 
     private MapAndCamManager manager;
+    private TiledMap map;
     private SpriteBatch batch;
     private PhysicWorld world;
 
+    private HolderStatics holderStatics;
+
     public GameScreen(AssetManager assetManager)
     {
+        map = assetManager.get("World/World.tmx");
         batch = new SpriteBatch();
-        manager = new MapAndCamManager(assetManager.get("World/World.tmx"),batch);
+        manager = new MapAndCamManager(map,batch);
         world = new PhysicWorld(manager);
+        holderStatics = new HolderStatics(map,world.getWorld());
 
     }
 
@@ -32,13 +39,15 @@ public class GameScreen implements Screen {
         world.render();
         ScreenUtils.clear(Color.BLACK);
 
+        manager.camRender(delta);
+        manager.mapRender(delta);
+
         batch.setProjectionMatrix(manager.getCamera().combined);
         batch.begin();
 
-        batch.end();
+        holderStatics.draw(batch);
 
-        manager.camRender(delta);
-        manager.mapRender(delta);
+        batch.end();
     }
 
     @Override

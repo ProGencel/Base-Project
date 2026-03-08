@@ -3,6 +3,7 @@ package common;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
@@ -16,16 +17,15 @@ public class Box2DCreator {
         Polygon
     }
 
-    public static <T extends MapObject> Array<MapObject> findWantedMapObjects(TiledMap map, String mapLayer, String wantedClass, Class<T> clazz)
+    public static <T extends MapObject> Array<T> findWantedMapObjects(TiledMap map, String mapLayer, String wantedClass, Class<T> clazz)
     {
-        Array<MapObject> array = new Array<>();
+        Array<T> array = new Array<>();
 
         MapLayer layer = Safe.safeLayer(map,mapLayer);
 
-        for(MapObject mapObject : layer.getObjects().getByType(clazz))
+        for(T mapObject : layer.getObjects().getByType(clazz))
         {
-            String wantedType = mapObject.getProperties().get("type", String.class);
-
+            String wantedType = Safe.safeTiledClass(mapObject,wantedClass);
             if(wantedType.equals(wantedClass))
             {
                 array.add(mapObject);
@@ -52,6 +52,24 @@ public class Box2DCreator {
         throw new IllegalStateException("Object cannot find");
     }
 
+    public static  Array<TiledMapTileMapObject> findWantedTiledMapObjectButLookingTileSetProps(TiledMap map, String mapLayer, String targetClass, String wantedClass)
+    {
+        Array<TiledMapTileMapObject> array = new Array<>();
+
+        MapLayer layer = Safe.safeLayer(map,mapLayer);
+
+        for(TiledMapTileMapObject mapObject : layer.getObjects().getByType(TiledMapTileMapObject.class))
+        {
+            String wantedType = Safe.getSafeTileSetPropClass(mapObject,wantedClass);
+            if(wantedType.equals(targetClass))
+            {
+                array.add(mapObject);
+            }
+        }
+
+        return array;
+    }
+
     public static void createTestBox(World world,float x, float y)
     {
         BodyDef bodyDef = new BodyDef();
@@ -64,7 +82,7 @@ public class Box2DCreator {
         PolygonShape shape = new PolygonShape();
 
         fdef.shape = shape;
-        shape.setAsBox(1,1);
+        shape.setAsBox(10,10);
         body.createFixture(fdef);
 
         shape.dispose();

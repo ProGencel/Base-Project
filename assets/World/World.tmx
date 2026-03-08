@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="25">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="26">
  <tileset firstgid="1" name="beet" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="Objects/beet.png" width="32" height="32"/>
-  <tile id="0">
+  <tile id="0" type="Static">
    <objectgroup draworder="index" id="3">
     <object id="2" x="14.0313" y="17" width="5.9375" height="2.0625"/>
    </objectgroup>
   </tile>
  </tileset>
- <tileset firstgid="2" name="bush" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="2" name="bush" class="Static" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="Objects/bush.png" width="32" height="32"/>
-  <tile id="0">
+  <tile id="0" type="Static">
    <objectgroup draworder="index" id="2">
     <object id="1" x="6.09375" y="11.9063" width="19.9688" height="13.875"/>
    </objectgroup>
   </tile>
  </tileset>
- <tileset firstgid="3" name="carrot" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="3" name="carrot" class="Static" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="Objects/carrot.png" width="32" height="32"/>
-  <tile id="0">
+  <tile id="0" type="Static">
    <objectgroup draworder="index" id="2">
     <object id="1" x="14" y="16.0313" width="4" height="1.8125"/>
    </objectgroup>
@@ -34,7 +34,7 @@
    </objectgroup>
   </tile>
  </tileset>
- <tileset firstgid="5" name="pepper" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="5" name="pepper" class="Static" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="Objects/pepper.png" width="32" height="32"/>
   <tile id="0">
    <objectgroup draworder="index" id="2">
@@ -42,7 +42,7 @@
    </objectgroup>
   </tile>
  </tileset>
- <tileset firstgid="6" name="potato" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="6" name="potato" class="Static" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="Objects/potato.png" width="32" height="32"/>
   <tile id="0">
    <objectgroup draworder="index" id="2">
@@ -50,9 +50,9 @@
    </objectgroup>
   </tile>
  </tileset>
- <tileset firstgid="7" name="tree" tilewidth="64" tileheight="96" tilecount="1" columns="1">
+ <tileset firstgid="7" name="tree" class="Static" tilewidth="64" tileheight="96" tilecount="1" columns="1">
   <image source="Objects/tree.png" width="64" height="96"/>
-  <tile id="0">
+  <tile id="0" type="Static">
    <objectgroup draworder="index" id="2">
     <object id="1" x="28.2174" y="76.8696" width="10.6522" height="11.087"/>
    </objectgroup>
@@ -118,26 +118,6 @@
 </data>
  </layer>
  <objectgroup id="2" name="Objects">
-  <object id="1" gid="2" x="672" y="576" width="32" height="32"/>
-  <object id="2" gid="2" x="864" y="672" width="32" height="32"/>
-  <object id="3" gid="2" x="672" y="768" width="32" height="32"/>
-  <object id="4" gid="3" x="640" y="640" width="32" height="32"/>
-  <object id="5" gid="3" x="832" y="768" width="32" height="32"/>
-  <object id="6" gid="3" x="928" y="544" width="32" height="32"/>
-  <object id="7" gid="4" x="768" y="640" width="32" height="32"/>
-  <object id="8" gid="5" x="736" y="736" width="32" height="32"/>
-  <object id="9" gid="5" x="960" y="608" width="32" height="32"/>
-  <object id="10" gid="5" x="768" y="544" width="32" height="32"/>
-  <object id="11" gid="6" x="832" y="576" width="32" height="32"/>
-  <object id="12" gid="6" x="608" y="736" width="32" height="32"/>
-  <object id="13" gid="6" x="800" y="832" width="32" height="32"/>
-  <object id="14" gid="7" x="704" y="608" width="64" height="96"/>
-  <object id="15" gid="7" x="928" y="768" width="64" height="96"/>
-  <object id="17" gid="7" x="608" y="672" width="64" height="96"/>
-  <object id="18" gid="7" x="544" y="576" width="64" height="96"/>
-  <object id="19" gid="1" x="800" y="704" width="32" height="32"/>
-  <object id="21" gid="1" x="672" y="832" width="32" height="32"/>
-  <object id="22" gid="1" x="1024" y="640" width="32" height="32"/>
-  <object id="23" gid="5" x="128" y="1472" width="32" height="32"/>
+  <object id="25" gid="7" x="160" y="1472" width="64" height="96"/>
  </objectgroup>
 </map>

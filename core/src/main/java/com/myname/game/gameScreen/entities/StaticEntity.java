@@ -24,8 +24,9 @@ public class StaticEntity extends GameEntity{
 
     public StaticEntity(TiledMapTileMapObject mapObject, World world)
     {
-        setBody(world);
         setMosOfTheThings(mapObject);
+        setBody(world);
+        setHitboxes(mapObject);
     }
 
     public void draw(SpriteBatch batch)
@@ -49,6 +50,7 @@ public class StaticEntity extends GameEntity{
 
     private void setMosOfTheThings(TiledMapTileMapObject mapObject)
     {
+        position = new Vector2();
         texture = mapObject.getTextureRegion();
         position.x = mapObject.getX() * UNIT_SCALE;
         position.y = mapObject.getY() * UNIT_SCALE;
