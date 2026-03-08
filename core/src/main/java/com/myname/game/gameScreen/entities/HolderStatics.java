@@ -1,14 +1,11 @@
 package com.myname.game.gameScreen.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import common.Box2DCreator;
-import common.Safe;
 
 public class HolderStatics {
 
@@ -31,7 +28,7 @@ public class HolderStatics {
     private void setEntities(TiledMap map, World world)
     {
         Array<TiledMapTileMapObject> array =
-            Box2DCreator.findWantedTiledMapObjectButLookingTileSetProps(map,"Objects","Static","type");
+            Box2DCreator.findWantedTiledMapObjectsButLookingTileSetProps(map,"Objects","Static","type");
 
         for(TiledMapTileMapObject mapObject :  array)
         {

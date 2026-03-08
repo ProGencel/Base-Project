@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.myname.game.gameScreen.entities.HolderStatics;
+import com.myname.game.gameScreen.entities.player.Player;
 
 public class GameScreen implements Screen {
 
@@ -15,6 +16,7 @@ public class GameScreen implements Screen {
     private SpriteBatch batch;
     private PhysicWorld world;
 
+    private Player player;
     private HolderStatics holderStatics;
 
     public GameScreen(AssetManager assetManager)
@@ -23,8 +25,9 @@ public class GameScreen implements Screen {
         batch = new SpriteBatch();
         manager = new MapAndCamManager(map,batch);
         world = new PhysicWorld(manager);
-        holderStatics = new HolderStatics(map,world.getWorld());
 
+        holderStatics = new HolderStatics(map,world.getWorld());
+        player = new Player(map,world.getWorld());
     }
 
     @Override
@@ -46,6 +49,7 @@ public class GameScreen implements Screen {
         batch.begin();
 
         holderStatics.draw(batch);
+        player.render(delta,batch);
 
         batch.end();
     }

@@ -52,7 +52,7 @@ public class Box2DCreator {
         throw new IllegalStateException("Object cannot find");
     }
 
-    public static  Array<TiledMapTileMapObject> findWantedTiledMapObjectButLookingTileSetProps(TiledMap map, String mapLayer, String targetClass, String wantedClass)
+    public static  Array<TiledMapTileMapObject> findWantedTiledMapObjectsButLookingTileSetProps(TiledMap map, String mapLayer, String targetClass, String wantedClass)
     {
         Array<TiledMapTileMapObject> array = new Array<>();
 
@@ -68,6 +68,22 @@ public class Box2DCreator {
         }
 
         return array;
+    }
+
+    public static  TiledMapTileMapObject findWantedTileMapObjectButLookingTileSetProps(TiledMap map, String mapLayer, String targetClass, String wantedClass)
+    {
+        MapLayer layer = Safe.safeLayer(map,mapLayer);
+
+        for(TiledMapTileMapObject mapObject : layer.getObjects().getByType(TiledMapTileMapObject.class))
+        {
+            String wantedType = Safe.getSafeTileSetPropClass(mapObject,wantedClass);
+            if(wantedType.equals(targetClass))
+            {
+                return mapObject;
+            }
+        }
+
+        throw new IllegalStateException("Wanted Object cannot find on " + mapLayer);
     }
 
     public static void createTestBox(World world,float x, float y)
