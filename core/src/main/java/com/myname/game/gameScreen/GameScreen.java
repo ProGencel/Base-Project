@@ -10,11 +10,14 @@ public class GameScreen implements Screen {
 
     private MapAndCamManager manager;
     private SpriteBatch batch;
+    private PhysicWorld world;
 
     public GameScreen(AssetManager assetManager)
     {
         batch = new SpriteBatch();
         manager = new MapAndCamManager(assetManager.get("World/World.tmx"),batch);
+        world = new PhysicWorld(manager);
+
     }
 
     @Override
@@ -25,7 +28,14 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta) {
 
+        world.updatePhysic(delta);
+        world.render();
         ScreenUtils.clear(Color.BLACK);
+
+        batch.setProjectionMatrix(manager.getCamera().combined);
+        batch.begin();
+
+        batch.end();
 
         manager.camRender(delta);
         manager.mapRender(delta);
@@ -54,5 +64,6 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         manager.dispose();
+        world.dispose();
     }
 }

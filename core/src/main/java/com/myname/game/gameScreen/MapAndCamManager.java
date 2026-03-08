@@ -54,4 +54,9 @@ public class MapAndCamManager {
         viewport.update(width,height);
     }
 
+    public OrthographicCamera getCamera()
+    {
+        return camera;
+    }
+
 }
