@@ -40,11 +40,17 @@ public class StaticEntity extends GameEntity{
         {
             Rectangle rec = new Rectangle(rectangleMapObject.getRectangle());
 
-            rec.height *= UNIT_SCALE;
-            rec.width *= UNIT_SCALE;
+            float rX = rec.x * UNIT_SCALE;
+            float rY = rec.y * UNIT_SCALE;
+            float rWidth = rec.width * UNIT_SCALE;
+            float rHeight = rec.height * UNIT_SCALE;
+
+            float centerX = (rX + (rWidth / 2f)) - body.getPosition().x;
+            float centerY = (rY + (rHeight / 2f)) - body.getPosition().y;
 
             FixtureDef fdef = new FixtureDef();
-            fixture = Box2DCreator.createFixture(body,fdef, Box2DCreator.ShapeType.Rectangle,new Vector2(rec.width,rec.height));
+            fixture = Box2DCreator.createFixture(body, fdef, Box2DCreator.ShapeType.Rectangle,
+                new Vector2(rWidth, rHeight), new Vector2(centerX, centerY));
         }
     }
 

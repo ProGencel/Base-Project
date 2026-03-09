@@ -5,14 +5,9 @@ import static com.myname.game.gameScreen.utils.Constants.*;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.*;
 import com.myname.game.gameScreen.entities.GameEntity;
-import common.Box2DCreator;
 
 public class Player extends GameEntity {
 
@@ -26,28 +21,23 @@ public class Player extends GameEntity {
     {
         playerRenderer = new PlayerRenderer(this);
         position = new Vector2();
-        setBody(map,world);
-    }
-
-    public void setBody(TiledMap map, World world)
-    {
-        TiledMapTileMapObject mapObject = Box2DCreator.findWantedTileMapObjectButLookingTileSetProps(map,"Objects","Player","type");
-
-        textureRegion = mapObject.getTextureRegion();
-        position.x = mapObject.getX() * UNIT_SCALE;
-        position.y = mapObject.getY() * UNIT_SCALE;
-        width = mapObject.getTextureRegion().getRegionWidth() * UNIT_SCALE;
-        height = mapObject.getTextureRegion().getRegionHeight() * UNIT_SCALE;
-
-        body = Box2DCreator.createBody(BodyDef.BodyType.DynamicBody,world,position,new Vector2(width,height));
-        FixtureDef fdef = new FixtureDef();
-
-        mainFixture = Box2DCreator.createFixture(body,fdef, Box2DCreator.ShapeType.Ellipse,new Vector2(width,height));
+        playerRenderer.setThings(map,world);
     }
 
     public void render(float dt, SpriteBatch batch)
     {
         playerRenderer.render(dt,batch);
+    }
+
+
+    public Body getBody()
+    {
+        return body;
+    }
+
+    public void setBody(Body body)
+    {
+        this.body = body;
     }
 
     public float getWidth() {
@@ -63,7 +53,40 @@ public class Player extends GameEntity {
         return position;
     }
 
+    public void setPosition(Vector2 position)
+    {
+        this.position = position;
+    }
+
     public TextureRegion getTextureRegion() {
         return textureRegion;
+    }
+
+    public void setWidth(float width) {
+        this.width = width;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public void setTextureRegion(TextureRegion textureRegion) {
+        this.textureRegion = textureRegion;
+    }
+
+    public Fixture getMainFixture() {
+        return mainFixture;
+    }
+
+    public void setMainFixture(Fixture mainFixture) {
+        this.mainFixture = mainFixture;
+    }
+
+    public PlayerRenderer getPlayerRenderer() {
+        return playerRenderer;
+    }
+
+    public void setPlayerRenderer(PlayerRenderer playerRenderer) {
+        this.playerRenderer = playerRenderer;
     }
 }

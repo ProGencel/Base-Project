@@ -27,8 +27,11 @@
  <tileset firstgid="4" name="Char" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="Objects/Char.png" width="32" height="32"/>
   <tile id="0" type="Player">
+   <properties>
+    <property name="OFFSET_Y" type="float" value="9"/>
+   </properties>
    <objectgroup draworder="index" id="3">
-    <object id="2" x="14.2174" y="19.1253" width="3.82609" height="3.83127">
+    <object id="2" x="14.3741" y="16.109" width="3.82609" height="3.83127">
      <ellipse/>
     </object>
    </objectgroup>
@@ -54,7 +57,7 @@
   <image source="Objects/tree.png" width="64" height="96"/>
   <tile id="0" type="Static">
    <objectgroup draworder="index" id="2">
-    <object id="1" x="28.2174" y="76.8696" width="10.6522" height="11.087"/>
+    <object id="1" x="28.0909" y="77" width="11" height="11"/>
    </objectgroup>
   </tile>
  </tileset>
@@ -118,7 +121,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="Objects">
-  <object id="25" gid="7" x="160" y="1472" width="64" height="96"/>
+  <object id="25" gid="7" x="0" y="1600" width="64" height="96"/>
   <object id="27" gid="4" x="128" y="1472" width="32" height="32"/>
  </objectgroup>
 </map>

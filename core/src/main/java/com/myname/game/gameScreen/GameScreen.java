@@ -39,7 +39,6 @@ public class GameScreen implements Screen {
     public void render(float delta) {
 
         world.updatePhysic(delta);
-        world.render();
         ScreenUtils.clear(Color.BLACK);
 
         manager.camRender(delta);
@@ -52,6 +51,8 @@ public class GameScreen implements Screen {
         player.render(delta,batch);
 
         batch.end();
+
+        world.render();
     }
 
     @Override

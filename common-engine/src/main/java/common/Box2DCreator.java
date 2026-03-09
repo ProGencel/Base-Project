@@ -98,7 +98,7 @@ public class Box2DCreator {
         PolygonShape shape = new PolygonShape();
 
         fdef.shape = shape;
-        shape.setAsBox(10,10);
+        shape.setAsBox(1,1);
         body.createFixture(fdef);
 
         shape.dispose();
@@ -114,7 +114,7 @@ public class Box2DCreator {
         return world.createBody(bodyDef);
     }
 
-    public static Fixture createFixture(Body body, FixtureDef fdef, ShapeType shapeType, Vector2 fixtureMeasure)
+    public static Fixture createFixture(Body body, FixtureDef fdef, ShapeType shapeType, Vector2 fixtureMeasure,Vector2 position)
     {
 
         Shape shape = null;
@@ -123,14 +123,16 @@ public class Box2DCreator {
         {
             case Ellipse -> {
                 shape = new CircleShape();
-                shape.setRadius(fixtureMeasure.x/2);
+                CircleShape circleShape = (CircleShape) shape;
+                circleShape.setRadius(fixtureMeasure.x/2);
+                circleShape.setPosition(position);
 
-                fdef.shape = shape;
+                fdef.shape = circleShape;
             }
             case Rectangle -> {
                 shape = new PolygonShape();
                 PolygonShape polygonShape = (PolygonShape) shape;
-                polygonShape.setAsBox(fixtureMeasure.x/2,fixtureMeasure.y/2);
+                polygonShape.setAsBox(fixtureMeasure.x/2,fixtureMeasure.y/2,new Vector2(position.x,position.y),0);
 
                 fdef.shape = polygonShape;
             }
